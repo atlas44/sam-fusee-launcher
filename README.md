@@ -1,5 +1,7 @@
 # sam-fusee-launcher
-Fusee Launcher for the SparkFun SAMD21 breakout boards. Built and tested with PlatformIO but the Arduino IDE probably works also.
+Fusee Launcher for the SparkFun SAMD21 breakout boards. Based on [Fusee Launcher](https://github.com/reswitched/fusee-launcher).
+
+Built and tested with PlatformIO but the Arduino IDE probably works also.
 
 [Video of it in action](https://i.imgur.com/sbv75wV.mp4)
 
