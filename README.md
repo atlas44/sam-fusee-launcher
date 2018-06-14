@@ -25,9 +25,18 @@ Your computer should detect the Trinket m0 automatically (On win7 install this [
 
 Got to Tools > Port and select your conneted trinket m0
 
+Download this Repository, open main/main.ino with Arduino IDE.
+
 Then Verify/Compile (Ctrl + R)
 If no errors appear
-Upload (Ctrl + U)
+Upload (Ctrl + U).
+
+The trinket is ready for use.
+
+LED is:
+* blinking orange -> searching for Switch in RCM mode
+* red -> no Switch found
+* off (except the power LED) -> finished successfully
 
 # Update the Payload
 download your favorit [payload](https://github.com/CTCaer/hekate/releases) as a `.bin` file.
