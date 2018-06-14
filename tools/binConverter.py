@@ -1,6 +1,8 @@
 import sys
 import binascii
 import os
+
+
 def printProgressBar(progress):
     i = int(progress * 20)
     sys.stdout.write('\r')
@@ -49,4 +51,5 @@ print("\nwriting file: " + fileOut)
 text_file = open(fileOut, "w")
 text_file.write(stringBuffer)
 text_file.close()
+
 print("finished")
