@@ -40,8 +40,11 @@ Then just compile and upload.
 
 # Hardware
 [trinket m0](https://www.adafruit.com/product/3500) + [liPoly charger](https://www.adafruit.com/product/2124) + Button + 150mAh LiPoly Battery
+
 ![Layout](https://github.com/noemu/sam-fusee-launcher/tree/master/images/layout.png)
+
 ![front](https://github.com/noemu/sam-fusee-launcher/tree/master/images/front.jpg)
+
 ![back](https://github.com/noemu/sam-fusee-launcher/tree/master/images/back.jpg)
 
 Thanks to:
