@@ -47,6 +47,11 @@ Then just compile and upload.
 
 ![back](./images/back.jpg)
 
+Power consumption:
+* Idle with error and power LED: 3.5mA
+* Idle with only power LED: 1.3mA
+* Running: 12.7mA
+
 Thanks to:
 * [atlas44](https://github.com/atlas44/sam-fusee-launcher)
 * [CTCaer](https://github.com/CTCaer/hekate)
