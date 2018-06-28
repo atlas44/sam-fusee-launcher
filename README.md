@@ -61,7 +61,20 @@ Power consumption:
 * Idle with only power LED: 1.3mA
 * Running: 12.7mA
 
-Thanks to:
+# Finished Dongle
+Micro USB to USB C converter
+
+![microUsbToUsbC](./images/microUsbToUsbC.jpg)
+
+![inside](./images/innenLeben.jpg)
+
+![dongle](./images/dongle.jpg)
+
+![plugged](./images/plugged.jpg)
+
+[![Test](https://img.youtube.com/vi/RDU1Ht54ouM/0.jpg)](https://www.youtube.com/watch?v=RDU1Ht54ouM)
+
+# Thanks to:
 * [atlas44](https://github.com/atlas44/sam-fusee-launcher)
 * [CTCaer](https://github.com/CTCaer/hekate)
 * [Ninoh-FOX](https://www.elotrolado.net/hilo_tutorial-crea-tu-propio-dongle-portatil-para-cargar-payloads-it-is-easy_2287822)
