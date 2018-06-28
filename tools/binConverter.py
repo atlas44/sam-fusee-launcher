@@ -15,11 +15,15 @@ def openFileToByte_generator(filename , chunkSize = 128):
     with open(filename, "rb") as f:
         while True:
             chunk = f.read(chunkSize)
+            #print(type(chunk))
             readBytes += chunkSize
             printProgressBar(readBytes/float(fileSize))
             if chunk:
                 for byte in chunk:
-                    yield byte
+                    if sys.version_info[0] < 3:
+                        yield byte
+                    else:
+                        yield byte.to_bytes(1, byteorder='big')
             else:
                 break
 
