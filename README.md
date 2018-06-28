@@ -25,16 +25,25 @@ Your computer should detect the Trinket m0 automatically (On win7 install this [
 
 Got to Tools > Port and select your conneted trinket m0
 
+Download this Repository, open main/main.ino with Arduino IDE.
+
 Then Verify/Compile (Ctrl + R)
 If no errors appear
-Upload (Ctrl + U)
+Upload (Ctrl + U).
+
+The trinket is ready for use.
+
+LED is:
+* blinking orange -> searching for Switch in RCM mode
+* red -> no Switch found
+* off (except the power LED) -> finished successfully
 
 # Update the Payload
-download your favorit [payload](https://github.com/CTCaer/hekate/releases) as a `.bin` file
-run the python script `tools/binConverter.py` with the path to the file as an argument
-`python binConverter.py "C:\pathToMyPayload\hekateNew.bin` or just drag the bin file on the script
+download your favorit [payload](https://github.com/CTCaer/hekate/releases) as a `.bin` file.
+run the python script `tools/binConverter.py` with the path to the file as an argument:
+`python binConverter.py "C:\pathToMyPayload\hekateNew.bin` or just drag the .bin file on the script
 
-in the same folder as the .bin file is located, a new .h file should appear. Copy the new file to the main folder and in the main.ino go to line 6 `#include "hekate_ctcaer_2.3.h"` and rename it to your new file `#include "hekateNew.h`
+in the same folder as the .bin file is located, a new .h file should appear. Copy the new file to the main folder and in the main.ino go to line 6 `#include "hekate_ctcaer_2.3.h"` and rename it to your new file `#include "hekateNew.h"`
 
 Then just compile and upload.
 
