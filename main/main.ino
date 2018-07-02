@@ -1,9 +1,11 @@
 #include <Arduino.h>
 #include <Usb.h>
 #include <Adafruit_DotStar.h>
+#include <FlashAsEEPROM.h>
 
 // Contains fuseeBin and FUSEE_BIN_LENGTH
-#include "hekate_ctcaer_2.3.h"
+#include "hekate_ctcaer_3.0.h"
+#include "sxLoader.h"
 
 #define INTERMEZZO_SIZE 92
 const byte intermezzo[INTERMEZZO_SIZE] =
@@ -83,7 +85,7 @@ void usbOutTransferChunk(uint32_t addr, uint32_t ep, uint32_t nbytes, uint8_t* d
     }
     else
     {
-      strip.setPixelColor(0, 64, 0, 0); strip.show();
+      setLedColor("red");
       DEBUG_PRINTLN("Error in OUT transfer");
       return;
     }
@@ -192,7 +194,7 @@ void setupTegraDevice()
   UHD_Pipe_Alloc(tegraDeviceAddress, 0x01, USB_HOST_PTYPE_BULK, USB_EP_DIR_IN, 0x40, 0, USB_HOST_NB_BK_1);
 }
 
-void sleep(int errorCode) {
+void sleepDeep(int errorCode) {
   // Turn off all LEDs and go to sleep. To launch another payload, press the reset button on the device.
   //delay(100);
   digitalWrite(PIN_LED_RXL, HIGH);
@@ -207,6 +209,20 @@ void sleep(int errorCode) {
   __DSB(); /* Ensure effect of last store takes effect */
   __WFI(); /* Enter sleep mode */
 }
+
+void ledBlink(const char color[], int count, int duration) {
+  for (int counter = 0; counter < count; counter++) {
+    for (int onOff = 1; onOff >= 0; onOff--) {
+      if(onOff == 1){
+        setLedColor(color);
+      }else{
+        setLedColor("black");
+      }
+      delay(duration/(2.0*count));
+    }
+  }
+}
+
 void setLedColor(const char color[]) {
   if (color == "red") {
     strip.setPixelColor(0, 64, 0, 0);
@@ -216,11 +232,27 @@ void setLedColor(const char color[]) {
     strip.setPixelColor(0, 64, 32, 0);
   } else if (color == "black") {
     strip.setPixelColor(0, 0, 0, 0);
+  } else if (color == "blue") {
+    strip.setPixelColor(0, 5, 20, 64);
+  } else if (color == "red2") {
+    strip.setPixelColor(0, 64, 10, 10);
   } else {
     strip.setPixelColor(0, 255, 255, 255);
   }
   strip.show();
 }
+
+void selectPayload() {
+
+  while (true)
+  {
+    EEPROM.update(0,0); //selecting value 0: hekate3
+    ledBlink("blue",5,4000);
+    EEPROM.update(0,1); //selecting value 0: sxLoader
+    ledBlink("red2",5,4000);
+  }
+}
+
 void setup()
 {
 
@@ -232,7 +264,7 @@ void setup()
   delay(100);
 #endif
 
-  if (usbInitialized == -1) sleep(-1);
+  if (usbInitialized == -1) sleepDeep(-1);
 
   DEBUG_PRINTLN("Ready! Waiting for Tegra...");
   bool blink = true;
@@ -252,8 +284,9 @@ void setup()
       blink = !blink;
       lastCheckTime = currentTime;
     }
-    if (currentTime > 5000) {
-      sleep(-1);
+    if (currentTime > 3000) { //3 seconds
+      //sleepDeep(-1); //instead of going into deepSleep, start selection process
+      selectPayload();
     }
 
   }
@@ -269,7 +302,18 @@ void setup()
   DEBUG_PRINTLN("Sending payload...");
   UHD_Pipe_Alloc(tegraDeviceAddress, 0x01, USB_HOST_PTYPE_BULK, USB_EP_DIR_OUT, 0x40, 0, USB_HOST_NB_BK_1);
   packetsWritten = 0;
-  sendPayload(fuseeBin, FUSEE_BIN_SIZE);
+
+  //reed byte from eeprom. 0: hekate3 1: sx_Loader default:hekate3
+  unsigned char selectedPayload = EEPROM.read(0);
+
+  if (selectedPayload == 0) {
+    sendPayload(hekate_3, HEKATE_3_SIZE);
+  } else if (selectedPayload == 1) {
+    sendPayload(sx_loader, SX_LOADER_SIZE);
+  } else {
+    sendPayload(hekate_3, HEKATE_3_SIZE);
+  }
+
 
   if (packetsWritten % 2 != 1)
   {
@@ -282,9 +326,7 @@ void setup()
               0x00, 0x00, 0x00, 0x00, 0x7000, 0x7000, usbWriteBuffer, NULL);
   DEBUG_PRINTLN("Done!");
 
-  sleep(1);
-
-
+  sleepDeep(1);
 }
 
 void loop()

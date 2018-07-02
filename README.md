@@ -18,7 +18,7 @@ Summary:
 * Select the Trinket M0 with "Tools > Board > Adafruit Trinket M0"
 
 Go to Sketch > Include Library > Manage Libraries
-Install USBHOst and Adafruit DotStar
+Install USBHOst, Adafruit DotStar and FlashStorage.
 
 Connect the Trinket m0 to your computer and double Click on the Reset Button.
 Your computer should detect the Trinket m0 automatically (On win7 install this [driver](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/2.2.0/adafruit_drivers_2.2.0.0.exe))
