@@ -6,7 +6,7 @@ Fusee Launcher for the adafruit trinket m0 board. Based on [sam fusee launcher](
 Build and tested with Arduino SDK.
 
 # Install
-* Download and extract the firmware: [CTCaer Hekate 3.2](), [SXLoader 1.0]()
+* Download and extract the firmware: [CTCaer Hekate 3.2](https://github.com/noemu/sam-fusee-launcher/releases/tag/v0.1), [SXLoader 1.0](https://github.com/noemu/sam-fusee-launcher/releases/tag/v0.1-sx)
 * Connect the Trinket M0 and press the reset button twice
 * Open the TRINKETBOOT device and copy the extracted files on the device
 
