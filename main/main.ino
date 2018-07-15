@@ -4,7 +4,7 @@
 #include "trinketLed.h"
 
 // Contains fuseeBin and FUSEE_BIN_SIZE
-#include "sxLoader.h"
+#include "hekate_ctcaer_3.2.h"
 
 
 void setup()
