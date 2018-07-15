@@ -4,6 +4,8 @@ Adafruit_DotStar strip = Adafruit_DotStar(1, INTERNAL_DS_DATA, INTERNAL_DS_CLK, 
 
 void ledInit() {
   strip.begin();
+  strip.setPixelColor(0, 0, 0, 0);
+  strip.show();
 }
 
 void setLedColor(const char color[]) {
