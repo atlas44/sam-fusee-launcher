@@ -19,7 +19,7 @@ Summary:
 * In Arduino: go to "Prefences" and add to "Additional Board Manager URLs" followin URL:
 *  `https://adafruit.github.io/arduino-board-index/package_adafruit_index.json`
 * go to "Tools > Board > Board Manager" and select Type: All and
-* Install "Adafruit SAMD Boards" by Adafruit (not sure if required: Arduino - Boards SAMD)
+* Install "Adafruit SAMD Boards" and "Arduino - Boards SAMD"
 * Select the Trinket M0 with "Tools > Board > Adafruit Trinket M0"
 
 Go to Sketch > Include Library > Manage Libraries
